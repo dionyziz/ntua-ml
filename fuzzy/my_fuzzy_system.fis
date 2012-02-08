@@ -1,0 +1,41 @@
+[System]
+Name='my_fuzzy_system'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='obstacle-dist'
+Range=[0 400]
+NumMFs=3
+MF1='far':'smf',[-4.76190476190476 148]
+MF2='near':'gaussmf',[5.84342386130436 -1.06]
+MF3='close-enough':'gaussmf',[21 37.2058201058201]
+
+[Input2]
+Name='target-angle'
+Range=[0 180]
+NumMFs=3
+MF1='headson':'gaussmf',[30.939579867635 0]
+MF2='opposide':'gaussmf',[66.1257687367101 180]
+MF3='incident':'gaussmf',[12.7236494462196 87.6]
+
+[Output1]
+Name='speed'
+Range=[0 15]
+NumMFs=3
+MF1='slow':'gaussmf',[4.90382229928202 1.11e-016]
+MF2='fast':'gaussmf',[4.90382229928202 15]
+MF3='average':'gaussmf',[3.185 7.5]
+
+[Rules]
+1 1, 2 (1) : 1
+2 2, 1 (1) : 1
+1 3, 3 (1) : 1
